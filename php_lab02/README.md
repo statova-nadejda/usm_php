@@ -11,7 +11,7 @@
 
 Проверяем установку, выполнив в командной строке: **php -v**
 
-![image1](./images/image1.png)
+![image1](images/image1.png)
 
 #### Шаг 3. Написание первой PHP-программы
 
@@ -35,7 +35,7 @@ print "Hello, World with print!";
 
 Выводится следующий текст в терминале:
 
-![image2](./images/image2.png)
+![image2](images/image2.png)
 
 #### Шаг 5. Работа с переменными и выводом
 
@@ -56,7 +56,7 @@ echo "{$message} в течении {$days} дней\n";
 ```
 Получаем следующий вывод: 
 
-![image3](./images/image3.png)
+![image3](images/image3.png)
 
 #### Контрольные вопросы 
 
