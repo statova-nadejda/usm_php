@@ -7,10 +7,20 @@ use DateMalformedStringException;
 
 class TransactionManager
 {
+    /**
+     * Constructor for the TransactionManager class.
+     *
+     * @param TransactionStorageInterface $repository Repository for storing transactions.
+     */
     public function __construct(private readonly TransactionStorageInterface $repository)
     {
     }
 
+    /**
+     * Calculates the total amount of all transactions.
+     *
+     * @return float The total amount of all transactions.
+     */
     public function calculateTotalAmount(): float
     {
         $transactions = $this->repository->getTransactions();
@@ -20,6 +30,13 @@ class TransactionManager
         }, 0.0);
     }
 
+    /**
+     * Calculates the total amount of transactions within a specified date range.
+     *
+     * @param string $startDate Start date of the range in 'YYYY-MM-DD' format.
+     * @param string $endDate End date of the range in 'YYYY-MM-DD' format.
+     * @return float The total amount of transactions in the date range.
+     */
     public function calculateTotalAmountByDateRange(string $startDate, string $endDate): float
     {
         $transactions = $this->repository->getTransactions();
@@ -38,6 +55,12 @@ class TransactionManager
         }, 0.0);
     }
 
+    /**
+     * Counts the number of transactions for a specified merchant.
+     *
+     * @param string $merchant The name of the merchant.
+     * @return int The number of transactions for the given merchant.
+     */
     public function countTransactionsByMerchant(string $merchant): int
     {
         $transactions = $this->repository->getTransactions();
@@ -49,6 +72,11 @@ class TransactionManager
         }, 0);
     }
 
+    /**
+     * Sorts transactions by date in ascending order.
+     *
+     * @return array The sorted array of transactions.
+     */
     public function sortTransactionsByDate(): array
     {
         $transactions = $this->repository->getTransactions();
@@ -60,6 +88,11 @@ class TransactionManager
         return $transactions;
     }
 
+    /**
+     * Sorts transactions by amount in descending order.
+     *
+     * @return array The sorted array of transactions.
+     */
     public function sortTransactionsByAmountDesc(): array
     {
         $transactions = $this->repository->getTransactions();

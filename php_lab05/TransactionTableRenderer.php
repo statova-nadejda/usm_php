@@ -5,6 +5,12 @@ namespace php_lab05;
 
 final class TransactionTableRenderer
 {
+    /**
+     * Generates an HTML table for displaying transactions.
+     *
+     * @param array $transactions Array of transaction objects to display.
+     * @return string HTML string with the transactions table.
+     */
     public function render(array $transactions): string
     {
         ob_start();
