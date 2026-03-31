@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace php_lab05;
 
-class TransactionRepository
+class TransactionRepository implements TransactionStorageInterface
 {
     private array $transactions = [];
 

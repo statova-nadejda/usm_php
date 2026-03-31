@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 namespace php_lab05;
+use DateTime;
 
 class Transaction
 {

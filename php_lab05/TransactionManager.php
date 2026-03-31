@@ -1,10 +1,13 @@
 <?php
+declare(strict_types=1);
 
 namespace php_lab05;
+use DateTime;
+use DateMalformedStringException;
 
 class TransactionManager
 {
-    public function __construct(private readonly TransactionRepository $repository)
+    public function __construct(private readonly TransactionStorageInterface $repository)
     {
     }
 
@@ -21,45 +24,51 @@ class TransactionManager
     {
         $transactions = $this->repository->getTransactions();
 
-        $startDate = new DateTime($startDate);
-        $endDate = new DateTime($endDate);
+        try {
+            $startDate = new DateTime($startDate);
+            $endDate = new DateTime($endDate);
+        } catch (DateMalformedStringException $e) {
+            echo "Error: ", $e->getMessage();
+        }
 
         return array_reduce($transactions, function($totalAmount, $transaction) use ($startDate, $endDate) {
-            if($transaction->getDate() > $startDate && $transaction->getDate() < $endDate)
-                return $totalAmount + $transaction->getAmount();
-        });
+            return ($transaction->getDate() >= $startDate && $transaction->getDate() <= $endDate)
+                ? $totalAmount + $transaction->getAmount()
+                : $totalAmount;
+        }, 0.0);
     }
 
     public function countTransactionsByMerchant(string $merchant): int
     {
-        $transactions = $this->repository->getAllTransactions();
+        $transactions = $this->repository->getTransactions();
 
         return array_reduce($transactions, function($transactionsByMerchant, $transaction) use ($merchant){
-            if($transaction->getMerchant() === $merchant)
-                return $transactionsByMerchant++;
+            return ($transaction->getMerchant() === $merchant)
+                ? ++$transactionsByMerchant
+                : $transactionsByMerchant;
         }, 0);
     }
 
     public function sortTransactionsByDate(): array
     {
-        $transactions = $this->repository->getAllTransactions();
+        $transactions = $this->repository->getTransactions();
 
-        return usort($transactions, function($firstTransaction, $secondTransaction) {
-            if($firstTransaction->getDate() < $secondTransaction->getDate()) return -1;
-            if($firstTransaction->getDate() === $secondTransaction->getDate()) return 0;
-            if($firstTransaction->getDate() > $secondTransaction->getDate()) return 1;
+        usort($transactions, function($firstTransaction, $secondTransaction) {
+            return ($firstTransaction->getDate() <=> $secondTransaction->getDate());
         });
+
+        return $transactions;
     }
 
     public function sortTransactionsByAmountDesc(): array
     {
-        $transactions = $this->repository->getAllTransactions();
+        $transactions = $this->repository->getTransactions();
 
-        return usort($transactions, function($firstTransaction, $secondTransaction) {
-            if($firstTransaction->getAmount() < $secondTransaction->getAmount()) return 1;
-            if($firstTransaction->getAmount() === $secondTransaction->getAmount()) return 0;
-            if($firstTransaction->getAmount() > $secondTransaction->getAmount()) return -1;
+        usort($transactions, function($firstTransaction, $secondTransaction) {
+            return ($secondTransaction->getAmount() <=> $firstTransaction->getAmount());
         });
+
+        return $transactions;
     }
 
 }
