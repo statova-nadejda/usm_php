@@ -2,7 +2,8 @@
 declare(strict_types=1);
 
 namespace php_lab05;
-
+require_once 'Transaction.php';
+require_once 'TransactionStorageInterface.php';
 class TransactionRepository implements TransactionStorageInterface
 {
     private array $transactions = [];
