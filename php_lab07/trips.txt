@@ -1,0 +1,6 @@
+{"title":"kmdkg","destination":"elrkgkregn","startDate":"2026-04-11","endDate":"2026-04-18","description":"njnkjnkjnkjn","budget":"2345","transportType":"plane"}
+{"title":"kmdkg","destination":"elrkgkregn","startDate":"2026-04-11","endDate":"2026-04-18","description":"njnkjnkjnkjn","budget":"2345","transportType":"plane"}
+{"title":"sjfnfkjsdfjdsb","destination":"sdfjksdjfkjdsf","startDate":"2026-04-04","endDate":"2026-04-18","description":"","budget":"1345","transport":"Car"}
+{"title":"jdfvjfjfdnj","destination":"sdkfndjksfn","startDate":"2026-04-11","endDate":"2026-04-18","description":"","budget":"34543","transport":"Car"}
+{"title":"hiuig","destination":"lkjihugyvhb","startDate":"2026-04-17","endDate":"2026-04-24","description":"","budget":"976","transport":"Plane"}
+{"title":"kuytghj","destination":"lkjhg","startDate":"2026-04-17","endDate":"2026-04-24","description":"","budget":"76","transport":"Car"}

@@ -1,0 +1,15 @@
+{
+    "name": "user/php_lab07",
+    "autoload": {
+        "psr-4": {
+            "User\\PhpLab07\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "statova-nadejda",
+            "email": "statovanadejda04@gmail.com"
+        }
+    ],
+    "require": {}
+}

@@ -1,0 +1,16 @@
+<?php
+namespace php_lab07\views\layouts;
+/** @var string $content */
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip form</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+<?= $content ?>
+</body>
+</html>
