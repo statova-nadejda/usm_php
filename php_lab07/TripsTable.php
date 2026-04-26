@@ -10,6 +10,7 @@ use User\PhpLab07\HtmlEscaper;
 use User\PhpLab07\LayoutRenderer;
 use User\PhpLab07\Renderer;
 use User\PhpLab07\View;
+use User\PhpLab07\TwigRenderer;
 
 $trips = [];
 $fileName = 'trips.txt';
@@ -77,18 +78,25 @@ $nextOrder = function (string $field) use ($sort, $order): string {
     return 'asc';
 };
 
-$escaper = new HtmlEscaper();
+//$escaper = new HtmlEscaper();
 
-$baseRenderer = new Renderer(__DIR__ . '/views');
-$renderer = new LayoutRenderer($baseRenderer, 'layouts/table-layout');
+//$baseRenderer = new Renderer(__DIR__ . '/templates');
+//$renderer = new LayoutRenderer($baseRenderer, 'layouts/table-layout');
+$renderer = new TwigRenderer(__DIR__ . '/templates');
 
-$view = new View('pages/trip-table', [
+$view = new View('pages/trips-table', [
         'trips' => $trips,
         'sort' => $sort,
         'order' => $order,
-        'nextOrder' => $nextOrder,
-        'escaper' => $escaper,
-
+        'nextOrders' => [
+            'title' => $nextOrder('title'),
+            'destination' => $nextOrder('destination'),
+            'startDate' => $nextOrder('startDate'),
+            'endDate' => $nextOrder('endDate'),
+            'budget' => $nextOrder('budget'),
+            'transport' => $nextOrder('transport'),
+        ],
+        //'escaper' => $escaper,
 ]);
 
 echo $renderer->render($view);

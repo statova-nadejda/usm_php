@@ -1,0 +1,39 @@
+{% extends "layouts/table-layout.twig" %}
+
+{% block content %}
+    <div class="table-container">
+        <h1>Saved Trips</h1>
+
+        {% if trips is empty %}
+            <p class="empty-message">No trips found.</p>
+        {% else %}
+            <table>
+                <thead>
+                <tr>
+                    <th><a href="?sort=title&order={{ nextOrder.title }}">Title</a></th>
+                    <th><a href="?sort=destination&order={{ nextOrder.destination }}">Destination</a></th>
+                    <th><a href="?sort=startDate&order={{ nextOrder.startDate }}">Start Date</a></th>
+                    <th><a href="?sort=endDate&order={{ nextOrder.endDate }}">End Date</a></th>
+                    <th>Description</th>
+                    <th><a href="?sort=budget&order={{ nextOrder.budget }}">Budget</a></th>
+                    <th><a href="?sort=transport&order={{ nextOrder.transport }}">Transport</a></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for trip in trips %}
+                    <tr>
+                        <td>{{ trip.title|default('') }}</td>
+                        <td>{{ trip.destination|default('') }}</td>
+                        <td>{{ trip.startDate|default('') }}</td>
+                        <td>{{ trip.endDate|default('') }}</td>
+                        <td>{{ trip.description|default('') }}</td>
+                        <td>{{ trip.budget|default(0)|currency('EUR') }}</td>
+                        <td>{{ trip.transport|default('') }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+{% endblock %}

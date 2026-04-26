@@ -1,0 +1,112 @@
+{% extends "layouts/form-layout.twig" %}
+
+{% block content %}
+    <form action="submit.php" method="POST">
+        <div>
+            <label for="title">Title *</label>
+            <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    value="{{ old.title|default('') }}"
+                    class="{{ errors.title is not empty ? 'error-input' : '' }}"
+            >
+
+            {% if errors.title is not empty %}
+                <p class="error-text">{{ errors.title }}</p>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="destination">Destination *</label>
+            <input
+                    type="text"
+                    name="destination"
+                    id="destination"
+                    value="{{ old.destination|default('') }}"
+                    class="{{ errors.destination is not empty ? 'error-input' : '' }}"
+            >
+
+            {% if errors.destination is not empty %}
+                <p class="error-text">{{ errors.destination }}</p>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="startDate">Start Date *</label>
+            <input
+                    type="date"
+                    name="startDate"
+                    id="startDate"
+                    value="{{ old.startDate|default('') }}"
+                    class="{{ errors.startDate is not empty ? 'error-input' : '' }}"
+            >
+
+            {% if errors.startDate is not empty %}
+                <p class="error-text">{{ errors.startDate }}</p>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="endDate">End Date *</label>
+            <input
+                    type="date"
+                    name="endDate"
+                    id="endDate"
+                    value="{{ old.endDate|default('') }}"
+                    class="{{ errors.endDate is not empty ? 'error-input' : '' }}"
+            >
+
+            {% if errors.endDate is not empty %}
+                <p class="error-text">{{ errors.endDate }}</p>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="description">Description</label>
+            <input
+                    type="text"
+                    name="description"
+                    id="description"
+                    value="{{ old.description|default('') }}"
+            >
+        </div>
+
+        <div>
+            <label for="budget">Budget *</label>
+            <input
+                    type="text"
+                    name="budget"
+                    id="budget"
+                    value="{{ old.budget|default('') }}"
+                    class="{{ errors.budget is not empty ? 'error-input' : '' }}"
+            >
+
+            {% if errors.budget is not empty %}
+                <p class="error-text">{{ errors.budget }}</p>
+            {% endif %}
+        </div>
+
+        <fieldset class="{{ errors.transport is not empty ? 'error-fieldset' : '' }}">
+            <legend>Transport Type *</legend>
+
+            {% for transport in ['Car', 'Plane', 'Train', 'Bus'] %}
+                <label>
+                    <input
+                            type="radio"
+                            name="transport"
+                            value="{{ transport }}"
+                            {% if old.transport|default('') == transport %}checked{% endif %}
+                    >
+                    {{ transport }}
+                </label>
+            {% endfor %}
+
+            {% if errors.transport is not empty %}
+                <p class="error-text">{{ errors.transport }}</p>
+            {% endif %}
+        </fieldset>
+
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}
